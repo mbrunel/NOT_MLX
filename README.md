@@ -1,2 +1,5 @@
 # NOT_MLX
-a tiny lib who is a portable alternative of mlx
+
+parce qu'MLX aime les leaks
+
+et n'est pas portable btw
