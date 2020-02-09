@@ -6,7 +6,7 @@
 #    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 10:55:19 by mbrunel           #+#    #+#              #
-#    Updated: 2020/02/09 09:36:28 by mbrunel          ###   ########.fr        #
+#    Updated: 2020/02/09 11:57:51 by mbrunel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,9 @@ LIB_FT = $(LIBFT_DIR)/$(LIBFT_NAME)
 CC =		gcc
 CFLAGS =	-Wall -Wextra -I$(INCS_DIR)
 
-SRCS = hop.c\
-		open_tmp.c
+SRCS =		nmlx_init.c\
+			nmlx_loop.c\
+			nmlx_new_win.c
 
 OBJS =		$(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
 
@@ -40,11 +41,11 @@ C_NONE = \033[0m
 
 all : $(NAME)
 
-$(NAME):	$(OBJS) $(SDL_DIR) $(DIR_LIB_SDL)
-	$(MAKE) -C $(LIBFT_DIR)
-	cp $(LIB_FT) $@
-	ar rc $(NAME) $(LIB_SDL) $(OBJS)
-	ranlib $@
+$(NAME): $(OBJS) $(SDL_DIR) $(DIR_LIB_SDL)
+	@$(MAKE) -C $(LIBFT_DIR)
+	@cp $(LIB_FT) $@
+	@ar rc $(NAME) $(LIB_SDL) $(OBJS)
+	@ranlib $@
 
 $(OBJS_DIR)/%.o : $(SRCS_DIR)/%.c $(INCS_DIR)/* Makefile
 	mkdir -p $(OBJS_DIR)/
@@ -71,8 +72,8 @@ clean :
 fclean : clean
 	@rm -rf $(NAME) $(LIB_FT) $(LIBFT_DIR)/libc/libc.a
 
-fclean_resdl : fclean
-			rm -rf $(SDL_DIR)
+fullfclean : fclean
+	@rm -rf $(SDL_DIR)
 
 re : fclean all
 

@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   not_mlx.h                                          :+:      :+:    :+:   */
+/*   nmlx_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/08 11:11:50 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/09 11:10:57 by mbrunel          ###   ########.fr       */
+/*   Created: 2020/02/09 11:06:29 by mbrunel           #+#    #+#             */
+/*   Updated: 2020/02/09 11:18:55 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NOT_MLX_H
-# define NOT_MLX_H
+#include <not_mlx.h>
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <string.h>
-
-# include "libft.h"
-# include "SDL2/SDL.h"
-# include "mlx.h"
-
-typedef struct		s_nmlx
+int	mlx_loop (void *mlx_ptr)
 {
-	void			*win;
-}					t_nmlx;
-
-void hop(void);
-int open_tmp();
-
-#endif
+	SDL_Event event;
+	while (1)
+		SDL_WaitEvent(&event);
+	return (-1);
+}

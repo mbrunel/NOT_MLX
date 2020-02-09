@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   not_mlx.h                                          :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/08 11:11:50 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/09 11:10:57 by mbrunel          ###   ########.fr       */
+/*   Created: 2020/02/09 10:50:53 by mbrunel           #+#    #+#             */
+/*   Updated: 2020/02/09 11:00:13 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NOT_MLX_H
-# define NOT_MLX_H
+#include <not_mlx.h>
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <string.h>
-
-# include "libft.h"
-# include "SDL2/SDL.h"
-# include "mlx.h"
-
-typedef struct		s_nmlx
+void *mlx_init(void)
 {
-	void			*win;
-}					t_nmlx;
+	t_nmlx *s;
 
-void hop(void);
-int open_tmp();
-
-#endif
+	if (!(s = malloc(sizeof(t_nmlx))))
+		return (NULL);
+	if (SDL_Init(SDL_INIT_VIDEO))
+		return (NULL);
+	return ((void*)s);
+}
