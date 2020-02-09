@@ -6,19 +6,18 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 10:10:04 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/08 10:11:33 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/08 11:14:35 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <SDL2/SDL.h>
-#include <stdio.h>
+#include <not_mlx.h>
 
 int main(int argc, char** argv)
 {
 	/* Initialisation simple */
 	if (SDL_Init(SDL_INIT_VIDEO) != 0 )
 	{
-		fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
+		ft_fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
 		return -1;
 	}
 
