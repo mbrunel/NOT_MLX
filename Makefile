@@ -6,7 +6,7 @@
 #    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 10:55:19 by mbrunel           #+#    #+#              #
-#    Updated: 2020/02/09 05:16:58 by mbrunel          ###   ########.fr        #
+#    Updated: 2020/02/09 06:43:19 by mbrunel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +24,13 @@ INC_SDL = $(SDL_DIR)/include
 DIR_LIB_SDL = $(SDL_DIR)/lib
 
 LIB_FT = $(LIBFT_DIR)/$(LIBFT_NAME)
-LIB_SDL = $(DIR_LIB_SDL)/lib/libSDL2.a
+LIB_SDL = $(DIR_LIB_SDL)/lib/libSDL2.so
 
 CC =		gcc
 CFLAGS =	-Wall -Wextra -I$(INCS_DIR)
 
-SRCS =
+SRCS = hop.c\
+		open_tmp.c
 
 OBJS =		$(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
 
@@ -42,8 +43,8 @@ all : $(NAME)
 
 $(NAME):	$(OBJS) $(SDL_DIR) $(DIR_LIB_SDL)
 			$(MAKE) -C $(LIBFT_DIR)
+			cp $(LIB_FT) $@
 			ar rc $(NAME) $(LIB_FT) $(LIB_SDL) $(OBJS)
-			ranlib $(NAME)
 
 $(OBJS_DIR)/%.o : $(SRCS_DIR)/%.c $(INCS_DIR)/* Makefile
 			mkdir -p $(OBJS_DIR)/
@@ -65,9 +66,14 @@ comp: all
 		$(CC) $(CFLAGS) main.c $(NAME) && ./a.out
 
 clean :
-			rm -rf $(OBJS) $(LIBFT_DIR)/*/*.o a.out $(SDL_DIR)
+			rm -rf $(OBJS) $(LIBFT_DIR)/*/*.o a.out
 
 fclean : clean
 			rm -rf $(NAME) $(LIB_FT) $(LIBFT_DIR)/libc/libc.a
 
+fclean_resdl : fclean
+			rm -rf $(SDL_DIR)
+
 re : fclean all
+
+re_full : fclean_resdl all

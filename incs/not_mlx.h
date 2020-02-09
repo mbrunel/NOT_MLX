@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 11:11:50 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/09 04:23:39 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/09 06:39:19 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,8 @@
 
 # include "libft.h"
 # include "SDL2/SDL.h"
+
+void hop(void);
+int open_tmp();
 
 #endif
