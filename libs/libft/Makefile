@@ -7,14 +7,17 @@ CFLAGS =	-Wall -Wextra -I./$(OTHER_DIR)
 NAME =		libft.a
 
 SRC = 		$(addprefix $(OTHER_DIR)/, get_next_line.c)
-OBJ =		$(SRC:%.c=%.o)
+OBJ =		$(patsubst %.c, %.o, $(SRCS))
 
 $(NAME):	${OBJ}
-			$(MAKE) -C $(LIBC_DIR)
-			$(MAKE) -C $(FT_FPRINTF_DIR)
-			cp $(LIBC_DIR)/libc.a $@
-			ar rc $@ $< $(FT_FPRINTF_DIR)/*.o
-			ranlib $@
+	-@$(MAKE) -C $(LIBC_DIR)
+	-@$(MAKE) -C $(FT_FPRINTF_DIR)
+	@cp $(LIBC_DIR)/libc.a $@
+	-@ar rc $@ $< $(FT_FPRINTF_DIR)/*.o
+	-@ranlib $@
+
+%.o : %.c
+	-@$(CC) $(CFLAGS) -c $< -o $@
 
 all:		${NAME}
 

@@ -1,8 +1,6 @@
 CC =		gcc
 
-CFLAGS =	-Wall -Wextra -I./libftprintf.h -I../libft/libft.h
-
-NAME =		ft_printf.a
+CFLAGS =	-Wall -Wextra
 
 SRC =	fprintf.c \
 		matrix.c \
@@ -17,15 +15,16 @@ SRC =	fprintf.c \
 		matrix.c \
 		printf_utils.c \
 
-OBJ =		${SRC:%.c=%.o}
+OBJ =	$(patsubst %.c, %.o, $(SRC))
 
 LIBFT_DIR = ../libft
 
 LIBFT = libft.a
 
-$(NAME):	${OBJ}
+%.o : %.c
+	-@$(CC) $(CFLAGS) -c $< -o $@
 
-all:		${NAME}
+all:		$(OBJ)
 
 clean:
 			rm -f ${OBJ} $(LIBFT_DIR)/*.o

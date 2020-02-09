@@ -50,14 +50,15 @@ SRC =		ft_atoi.c \
 			ft_lstcpy_bonus.c
 
 
-OBJ =		${SRC:%.c=%.o}
-
-OBJ_BONUS = ${SRC_BONUS:%.c=%.o}
+OBJ =	$(patsubst %.c, %.o, $(SRCS))
 
 $(NAME):	$(OBJ)
-			${CC} ${CFLAGS} -c ${SRC}
-			ar rc ${NAME} ${OBJ}
-			ranlib ${NAME}
+	-@${CC} ${CFLAGS} -c ${SRC}
+	-@ar rc ${NAME} ${OBJ}
+	@ranlib ${NAME}
+
+%.o : %.c
+	-@$(CC) $(CFLAGS) -c $< -o $@
 
 all:		${NAME}
 

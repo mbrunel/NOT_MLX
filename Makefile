@@ -6,7 +6,7 @@
 #    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 10:55:19 by mbrunel           #+#    #+#              #
-#    Updated: 2020/02/09 11:57:51 by mbrunel          ###   ########.fr        #
+#    Updated: 2020/02/09 15:34:36 by mbrunel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,26 +42,30 @@ C_NONE = \033[0m
 all : $(NAME)
 
 $(NAME): $(OBJS) $(SDL_DIR) $(DIR_LIB_SDL)
-	@$(MAKE) -C $(LIBFT_DIR)
+	-@$(MAKE) -C $(LIBFT_DIR)
 	@cp $(LIB_FT) $@
-	@ar rc $(NAME) $(LIB_SDL) $(OBJS)
+	@printf "\n$(C_GREEN)[%s]$(C_NONE)\n" $(LIBFT_NAME)
+	-@ar rc $(NAME) $(LIB_SDL) $(OBJS)
 	@ranlib $@
+	@printf "\n$(C_GREEN)[%s]$(C_NONE)\n" $@
 
 $(OBJS_DIR)/%.o : $(SRCS_DIR)/%.c $(INCS_DIR)/* Makefile
-	mkdir -p $(OBJS_DIR)/
-	$(CC) $(CFLAGS) -c $< -o $@
+	@mkdir -p $(OBJS_DIR)/
+	-@$(CC) $(CFLAGS) -c $< -o $@
+	@printf "\n$(C_GREEN)[%s]$(C_NONE)\n" $@
 
 $(SDL_DIR) :
-	tar -xf $(SDL_TAR)
-	printf $(C_CYAN)"starting SDL set up...]$(C_NONE)\n" $@
+	@tar -xf $(SDL_TAR)
+	@printf "$(C_CYAN)starting SDL set up...]$(C_NONE)\n" $@
 
 $(DIR_LIB_SDL):
-	mkdir $(DIR_LIB_SDL)
-	printf "\n$(C_CYAN)[configuring SDL...]$(C_NONE)\n"
-	cd $(SDL_DIR); ./configure --prefix=`pwd`/lib
-	printf "$(C_CYAN)[compiling SDL...]$(C_NONE)\n"
-	make -C $(SDL_DIR)
-	make -C $(SDL_DIR) install >/dev/null
+	@mkdir $(DIR_LIB_SDL)
+	@printf "\n$(C_CYAN)[configuring SDL...]$(C_NONE)\n"
+	@cd $(SDL_DIR); ./configure --prefix=`pwd`/lib
+	@printf "$(C_CYAN)[compiling SDL...]$(C_NONE)\n"
+	-@make -C $(SDL_DIR)
+	-@make -C $(SDL_DIR) install >/dev/null
+	@printf "\n$(C_GREEN)[SDL2]$(C_NONE)\n"
 
 comp: all
 	$(CC) $(CFLAGS) main.c $(NAME) `sdl2-config --cflags --libs` && ./a.out
