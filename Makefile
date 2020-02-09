@@ -6,7 +6,7 @@
 #    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 10:55:19 by mbrunel           #+#    #+#              #
-#    Updated: 2020/02/08 11:06:26 by mbrunel          ###   ########.fr        #
+#    Updated: 2020/02/08 14:23:49 by mbrunel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ OBJ_DIR = objs
 
 CC =		gcc
 CFLAGS =	-Wall -Wextra
-OFLAGS =	$(LIB_DIR)/$(LIBFT_DIR)/$(LIBFT) $(LIB_DIR)/libSDL2.so
-NAME =		exec
+OFLAGS =	$(LIB_DIR)/$(LIBFT_DIR)/$(LIBFT) $(LIB_DIR)/libSDL2.a
+NAME =		not_mlx.a
 
-SRCS =		main.c
+SRCS =
 
 OBJS =		$(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
 
@@ -29,14 +29,17 @@ LIBFT = libft.a
 
 $(NAME):	$(OBJS)
 			$(MAKE) -C $(LIB_DIR)/$(LIBFT_DIR)
-			$(CC) $(OFLAGS) $(OBJS) -o $(NAME)
+			ar rc $(NAME) $(OFLAGS) $(OBJS)
+			ranlib $(NAME)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c $(INC_DIR)/* Makefile
 			mkdir -p $(OBJ_DIR)/
 			$(CC) $(CFLAGS) -c $< -o $@
 
-
 all :	${NAME}
+
+comp: all
+		$(CC) $(CFLAGS) main.c $(NAME) && ./a.out
 
 clean :
 			rm -rf $(OBJS) $(LIB_DIR)/$(LIBFT_DIR)/*/*.o
