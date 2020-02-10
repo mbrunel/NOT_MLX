@@ -50,7 +50,7 @@ SRC =		ft_atoi.c \
 			ft_lstcpy_bonus.c
 
 
-OBJ =	$(patsubst %.c, %.o, $(SRCS))
+OBJ =	$(patsubst %.c, %.o, $(SRC))
 
 $(NAME):	$(OBJ)
 	-@${CC} ${CFLAGS} -c ${SRC}

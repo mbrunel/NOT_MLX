@@ -6,7 +6,7 @@
 #    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 10:55:19 by mbrunel           #+#    #+#              #
-#    Updated: 2020/02/09 15:34:36 by mbrunel          ###   ########.fr        #
+#    Updated: 2020/02/10 06:01:08 by mbrunel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ $(DIR_LIB_SDL):
 	@printf "\n$(C_GREEN)[SDL2]$(C_NONE)\n"
 
 comp: all
-	$(CC) $(CFLAGS) main.c $(NAME) `sdl2-config --cflags --libs` && ./a.out
+	$(CC) $(CFLAGS) main.c $(NAME) `$(SDL_DIR)/sdl2-config --cflags --libs` && ./a.out
 
 clean :
 	@rm -rf $(OBJS) $(LIBFT_DIR)/*/*.o a.out
