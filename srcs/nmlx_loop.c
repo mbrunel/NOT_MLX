@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 11:06:29 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/09 15:00:58 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/10 10:35:59 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,23 @@
 
 int	mlx_loop (void *mlx_ptr)
 {
-	SDL_Event event;
-	(void)mlx_ptr;
+	SDL_Event	sdl_event;
+	t_event		*event;
+	int			x_event;
+	t_nmlx		*s;
+
+	s = (t_nmlx*)mlx_ptr;
 	while (1)
-		SDL_WaitEvent(&event);
-	return (-1);
+	{
+		event = s->win->event;
+		SDL_PollEvent(&sdl_event);
+		sdl_to_x(&x_event, &sdl_event);
+		while (event)
+		{
+			if (event->event == x_event)
+				(*(event->funct_ptr))(0, event->param);
+			event = event->next;
+		}
+	}
+	return (0);
 }

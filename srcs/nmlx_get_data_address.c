@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nmlx_init.c                                        :+:      :+:    :+:   */
+/*   nmlx_get_data_address.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/09 10:50:53 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/10 09:36:23 by mbrunel          ###   ########.fr       */
+/*   Created: 2020/02/10 07:01:58 by mbrunel           #+#    #+#             */
+/*   Updated: 2020/02/10 10:37:50 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <not_mlx.h>
 
-void *mlx_init(void)
+char	*mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *size_line, int *endian)
 {
-	t_nmlx *s;
+	t_img *s_img;
 
-	if (!(s = malloc(sizeof(t_nmlx))))
-		return (NULL);
-	s->win = NULL;
-	s->img = NULL;
-	if (SDL_Init(SDL_INIT_VIDEO))
-		return (NULL);
-	return ((void*)s);
+	s_img = (t_img*)img_ptr;
+	*bits_per_pixel = sizeof(Uint8) * 4;
+	*size_line = *bits_per_pixel * s_img->width;
+	*endian = 0;
+	return (s_img->img);
 }

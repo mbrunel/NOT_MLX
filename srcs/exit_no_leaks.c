@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nmlx_init.c                                        :+:      :+:    :+:   */
+/*   exit_no_leaks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/09 10:50:53 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/10 09:36:23 by mbrunel          ###   ########.fr       */
+/*   Created: 2020/02/10 10:27:18 by mbrunel           #+#    #+#             */
+/*   Updated: 2020/02/10 10:39:15 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <not_mlx.h>
 
-void *mlx_init(void)
+int					exit_no_leaks(int i, void *mlx_ptr)
 {
-	t_nmlx *s;
+	t_nmlx	*s;
 
-	if (!(s = malloc(sizeof(t_nmlx))))
-		return (NULL);
-	s->win = NULL;
-	s->img = NULL;
-	if (SDL_Init(SDL_INIT_VIDEO))
-		return (NULL);
-	return ((void*)s);
+	s = (t_nmlx*)mlx_ptr;
+	printf("It works boys\n");
+	exit (i);
 }

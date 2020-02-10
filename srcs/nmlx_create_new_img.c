@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nmlx_init.c                                        :+:      :+:    :+:   */
+/*   nmlx_create_new_img.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/09 10:50:53 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/10 09:36:23 by mbrunel          ###   ########.fr       */
+/*   Created: 2020/02/10 06:22:03 by mbrunel           #+#    #+#             */
+/*   Updated: 2020/02/10 08:16:08 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <not_mlx.h>
 
-void *mlx_init(void)
+void	*mlx_new_image(void *mlx_ptr,int width,int height)
 {
 	t_nmlx *s;
 
-	if (!(s = malloc(sizeof(t_nmlx))))
+	s = (t_nmlx*)mlx_ptr;
+	if (!(s->img = malloc(sizeof(t_win))))
 		return (NULL);
-	s->win = NULL;
-	s->img = NULL;
-	if (SDL_Init(SDL_INIT_VIDEO))
+	s->img->width = width;
+	s->img->height = height;
+	if (!(s->img->img = malloc(s->img->height * s->img->width * sizeof(uint8_t) * 4)))
 		return (NULL);
-	return ((void*)s);
+	return ((void*)s->img);
 }

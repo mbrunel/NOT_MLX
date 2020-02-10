@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 11:11:50 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/09 11:10:57 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/10 10:40:49 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,40 @@
 
 # include "libft.h"
 # include "SDL2/SDL.h"
+# include "X.h"
 # include "mlx.h"
+
+#define EXIT -1
+
+typedef struct		s_event
+{
+	int				(*funct_ptr)(int i, void *);
+	void			*param;
+	int				event;
+	struct s_event	*next;
+}					t_event;
+
+typedef struct		s_win
+{
+	SDL_Window		*win;
+	SDL_Renderer	*render;
+	t_event			*event;
+}					t_win;
+
+typedef struct		s_img
+{
+	int				width;
+	int				height;
+	char			*img;
+}					t_img;
 
 typedef struct		s_nmlx
 {
-	void			*win;
+	t_win			*win;
+	t_img			*img;
 }					t_nmlx;
 
-void hop(void);
-int open_tmp();
+int					exit_no_leaks(int i, void*);
+void				sdl_to_x(int *x_event, SDL_Event *sdl_event);
 
 #endif

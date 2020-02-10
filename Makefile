@@ -6,7 +6,7 @@
 #    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 10:55:19 by mbrunel           #+#    #+#              #
-#    Updated: 2020/02/10 06:01:08 by mbrunel          ###   ########.fr        #
+#    Updated: 2020/02/10 10:46:10 by mbrunel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,13 @@ CFLAGS =	-Wall -Wextra -I$(INCS_DIR)
 
 SRCS =		nmlx_init.c\
 			nmlx_loop.c\
-			nmlx_new_win.c
+			nmlx_new_win.c\
+			nmlx_put_image_to_window.c\
+			nmlx_create_new_img.c\
+			nmlx_get_data_address.c\
+			nmlx_hook.c\
+			exit_no_leaks.c\
+			sdl_to_x.c
 
 OBJS =		$(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
 
@@ -67,14 +73,24 @@ $(DIR_LIB_SDL):
 	-@make -C $(SDL_DIR) install >/dev/null
 	@printf "\n$(C_GREEN)[SDL2]$(C_NONE)\n"
 
-comp: all
-	$(CC) $(CFLAGS) main.c $(NAME) `$(SDL_DIR)/sdl2-config --cflags --libs` && ./a.out
+EXEC = tester
+S = main.c
+MLX_DIR = $(LIBS_DIR)/mlx
+MLX = libmlx.dylib
+
+nmlx: $(NAME)
+	$(CC) $(CFLAGS) $(S) $(NAME) `$(SDL_DIR)/sdl2-config --cflags --libs` -o $(EXEC) && ./$(EXEC)
+
+mlx_lib: $(NAME)
+	$(MAKE) -C $(MLX_DIR)
+	cp $(MLX_DIR)/$(MLX) .
+	gcc $(CFLAGS) $(S) $(LIB_FT) $(MLX) -o $(EXEC) && ./$(EXEC)
 
 clean :
-	@rm -rf $(OBJS) $(LIBFT_DIR)/*/*.o a.out
+	@rm -rf $(OBJS) $(LIBFT_DIR)/*/*.o a.out $(MLX_DIR)/*.o
 
 fclean : clean
-	@rm -rf $(NAME) $(LIB_FT) $(LIBFT_DIR)/libc/libc.a
+	@rm -rf $(NAME) $(LIB_FT) $(LIBFT_DIR)/libc/libc.a $(EXEC) $(MLX)
 
 fullfclean : fclean
 	@rm -rf $(SDL_DIR)
