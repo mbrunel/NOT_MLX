@@ -6,11 +6,11 @@
 #    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 10:55:19 by mbrunel           #+#    #+#              #
-#    Updated: 2020/02/11 16:04:43 by mbrunel          ###   ########.fr        #
+#    Updated: 2020/02/11 16:43:02 by mbrunel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = not_mlx.a
+NAME = lib_not_mlx.a
 LIBFT_NAME = libft.a
 SDL_TAR = SDL2-2.0.10.tar.gz
 

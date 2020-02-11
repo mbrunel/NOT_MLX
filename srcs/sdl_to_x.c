@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 10:02:04 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/11 07:25:57 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/11 16:42:23 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void				sdl_to_x(int *i, int *x_event, SDL_Event *sdl_event)
 		if (sdl_event->type == SDL_MOUSEBUTTONUP)
 			*x_event = ButtonRelease;
 		if (*x_event)
-			*i = sdl_event->button.button;
+			*i = sdl_event->button.button == 3 ? 2 : sdl_event->button.button;
 		else
 			*i = 0;
 	}
