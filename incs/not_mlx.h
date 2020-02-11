@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 11:11:50 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/10 10:40:49 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/11 07:01:43 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ typedef struct		s_nmlx
 }					t_nmlx;
 
 int					exit_no_leaks(int i, void*);
-void				sdl_to_x(int *x_event, SDL_Event *sdl_event);
+void				sdl_to_x(int *i, int *x_event, SDL_Event *sdl_event);
 
 #endif

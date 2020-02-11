@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/11 07:28:46 by mbrunel           #+#    #+#             */
+/*   Updated: 2020/02/11 07:29:06 by mbrunel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <not_mlx.h>
 
 #define HEIGHT 600
@@ -28,8 +40,8 @@ int success(int i, void *info)
 	t_info *inf;
 
 	inf = (t_info*)info;
-	printf("succes endian : %d\n", inf->endian);
-	exit (i);
+	printf("signal %d\n", i);
+	exit (0);
 }
 
 int main(void)
@@ -56,10 +68,9 @@ int main(void)
 		while (++x < WIDTH)
 			img[y * WIDTH + x] = 0xffffff;
 	}
-
 	if (mlx_put_image_to_window(data.mlx_ptr, data.mlx_win, data.img_ptr, 0, 0) == -1)
 		return (fail(5));
-	mlx_hook(data.mlx_win, 2, (1L<<0), &success, (void*)&info);
+	mlx_hook(data.mlx_win, 3, (1L<<0), &success, (void*)&info);
     mlx_loop(data.mlx_ptr);
     return (EXIT_SUCCESS);
 }

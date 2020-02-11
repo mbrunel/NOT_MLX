@@ -6,7 +6,7 @@
 #    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 10:55:19 by mbrunel           #+#    #+#              #
-#    Updated: 2020/02/10 10:46:10 by mbrunel          ###   ########.fr        #
+#    Updated: 2020/02/11 07:28:11 by mbrunel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,6 @@ LIBFT_DIR = $(LIBS_DIR)/libft
 SDL_DIR = SDL2-2.0.10
 INC_SDL = $(SDL_DIR)/include
 DIR_LIB_SDL = $(SDL_DIR)/lib
-
-LIB_FT = $(LIBFT_DIR)/$(LIBFT_NAME)
 
 CC =		gcc
 CFLAGS =	-Wall -Wextra -I$(INCS_DIR)
@@ -48,9 +46,6 @@ C_NONE = \033[0m
 all : $(NAME)
 
 $(NAME): $(OBJS) $(SDL_DIR) $(DIR_LIB_SDL)
-	-@$(MAKE) -C $(LIBFT_DIR)
-	@cp $(LIB_FT) $@
-	@printf "\n$(C_GREEN)[%s]$(C_NONE)\n" $(LIBFT_NAME)
 	-@ar rc $(NAME) $(LIB_SDL) $(OBJS)
 	@ranlib $@
 	@printf "\n$(C_GREEN)[%s]$(C_NONE)\n" $@
@@ -75,16 +70,9 @@ $(DIR_LIB_SDL):
 
 EXEC = tester
 S = main.c
-MLX_DIR = $(LIBS_DIR)/mlx
-MLX = libmlx.dylib
 
-nmlx: $(NAME)
+test: $(NAME)
 	$(CC) $(CFLAGS) $(S) $(NAME) `$(SDL_DIR)/sdl2-config --cflags --libs` -o $(EXEC) && ./$(EXEC)
-
-mlx_lib: $(NAME)
-	$(MAKE) -C $(MLX_DIR)
-	cp $(MLX_DIR)/$(MLX) .
-	gcc $(CFLAGS) $(S) $(LIB_FT) $(MLX) -o $(EXEC) && ./$(EXEC)
 
 clean :
 	@rm -rf $(OBJS) $(LIBFT_DIR)/*/*.o a.out $(MLX_DIR)/*.o

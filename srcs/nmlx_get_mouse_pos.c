@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   nmlx_get_mouse_pos.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/12 16:33:54 by mbrunel           #+#    #+#             */
-/*   Updated: 2019/10/19 22:35:56 by mbrunel          ###   ########.fr       */
+/*   Created: 2020/02/11 07:20:00 by mbrunel           #+#    #+#             */
+/*   Updated: 2020/02/11 07:22:08 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <not_mlx.h>
 
-size_t	ft_strlen(const char *s)
+int     mlx_mouse_get_pos(void *win_ptr, int *x, int *y)
 {
-	size_t i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	(void)win_ptr;
+	SDL_GetMouseState(x, y);
 }
