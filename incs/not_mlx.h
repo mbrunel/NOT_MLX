@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 11:11:50 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/11 07:01:43 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/11 15:26:56 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct		s_win
 	SDL_Window		*win;
 	SDL_Renderer	*render;
 	t_event			*event;
+	struct s_win	*next;
 }					t_win;
 
 typedef struct		s_img
@@ -46,6 +47,8 @@ typedef struct		s_img
 	int				width;
 	int				height;
 	char			*img;
+	SDL_Texture		*tex;
+	struct s_img	*next;
 }					t_img;
 
 typedef struct		s_nmlx

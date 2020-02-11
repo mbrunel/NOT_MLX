@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nmlx_put_image_to_window.c                         :+:      :+:    :+:   */
+/*   nmlx_destroy_img.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/10 07:34:10 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/11 16:03:36 by mbrunel          ###   ########.fr       */
+/*   Created: 2020/02/11 15:48:09 by mbrunel           #+#    #+#             */
+/*   Updated: 2020/02/11 16:06:00 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <not_mlx.h>
 
-int	mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y)
+int	mlx_destroy_image(void *mlx_ptr, void *img_ptr)
 {
-	t_img		*img;
-	t_win		*win;
+	t_nmlx	*s;
+	t_img	*img;
+	t_img	*node;
 
+	s = (t_nmlx*)mlx_ptr;
 	img = (t_img*)img_ptr;
-	win = (t_win*)win_ptr;
-	(void)x;(void)y;(void)mlx_ptr;
-	if (SDL_UpdateTexture(img->tex, NULL, img->img, img->width * sizeof (Uint32)) == -1)
+	node = s->img;
+	if (img && node == img)
+	{
+		s->img = node->next;
+		SDL_DestroyTexture(img->tex);
+		free(img);
+		return (0);
+	}
+	while (node && node->next != img)
+		node = node->next;
+	if (!node)
 		return (-1);
-	if (SDL_RenderCopy(win->render,img->tex, NULL, NULL) == -1)
-		return (-1);
-	SDL_RenderPresent(win->render);
+	node->next = img->next;
+	SDL_DestroyTexture(img->tex);
+	free(img);
 	return (0);
 }

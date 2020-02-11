@@ -6,7 +6,7 @@
 #    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 10:55:19 by mbrunel           #+#    #+#              #
-#    Updated: 2020/02/11 07:28:11 by mbrunel          ###   ########.fr        #
+#    Updated: 2020/02/11 16:04:43 by mbrunel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,13 @@ SRCS =		nmlx_init.c\
 			nmlx_loop.c\
 			nmlx_new_win.c\
 			nmlx_put_image_to_window.c\
-			nmlx_create_new_img.c\
+			nmlx_new_img.c\
 			nmlx_get_data_address.c\
 			nmlx_hook.c\
 			exit_no_leaks.c\
-			sdl_to_x.c
+			sdl_to_x.c\
+			nmlx_destroy_img.c\
+			nmlx_destroy_win.c
 
 OBJS =		$(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
 
