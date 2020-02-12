@@ -6,25 +6,27 @@
 #    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 10:55:19 by mbrunel           #+#    #+#              #
-#    Updated: 2020/02/11 16:43:02 by mbrunel          ###   ########.fr        #
+#    Updated: 2020/02/12 09:53:01 by mbrunel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lib_not_mlx.a
-LIBFT_NAME = libft.a
-SDL_TAR = SDL2-2.0.10.tar.gz
+LIB_KEYCODE_NAME =
 
 LIBS_DIR = libs
 INCS_DIR = incs
 SRCS_DIR = srcs
 OBJS_DIR = objs
-LIBFT_DIR = $(LIBS_DIR)/libft
-SDL_DIR = SDL2-2.0.10
+SDL_TAR = $(LIBS_DIR)/SDL2-2.0.10.tar.gz
+SDL_UNTAR = SDL2-2.0.10
+SDL_DIR = $(LIBS_DIR)/$(SDL_UNTAR)
 INC_SDL = $(SDL_DIR)/include
 DIR_LIB_SDL = $(SDL_DIR)/lib
 
+
 CC =		gcc
 CFLAGS =	-Wall -Wextra -I$(INCS_DIR)
+OFLAGS =	`$(SDL_DIR)/sdl2-config --cflags --libs`
 
 SRCS =		nmlx_init.c\
 			nmlx_loop.c\
@@ -59,6 +61,7 @@ $(OBJS_DIR)/%.o : $(SRCS_DIR)/%.c $(INCS_DIR)/* Makefile
 
 $(SDL_DIR) :
 	@tar -xf $(SDL_TAR)
+	mv $(SDL_UNTAR) $(SDL_DIR)
 	@printf "$(C_CYAN)starting SDL set up...]$(C_NONE)\n" $@
 
 $(DIR_LIB_SDL):
@@ -71,16 +74,16 @@ $(DIR_LIB_SDL):
 	@printf "\n$(C_GREEN)[SDL2]$(C_NONE)\n"
 
 EXEC = tester
-S = main.c
+S = test_srcs/main.c
 
 test: $(NAME)
-	$(CC) $(CFLAGS) $(S) $(NAME) `$(SDL_DIR)/sdl2-config --cflags --libs` -o $(EXEC) && ./$(EXEC)
+	$(CC) $(CFLAGS) $(S) $(NAME) $(OFLAGS) -o $(EXEC) && ./$(EXEC)
 
 clean :
-	@rm -rf $(OBJS) $(LIBFT_DIR)/*/*.o a.out $(MLX_DIR)/*.o
+	@rm -rf $(OBJS)
 
 fclean : clean
-	@rm -rf $(NAME) $(LIB_FT) $(LIBFT_DIR)/libc/libc.a $(EXEC) $(MLX)
+	@rm -rf $(NAME) $(EXEC) $(MLX)
 
 fullfclean : fclean
 	@rm -rf $(SDL_DIR)
