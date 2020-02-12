@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 07:28:46 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/11 16:40:27 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/12 14:05:28 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@ int	fail(int code)
 	return (EXIT_FAILURE);
 }
 
-int sucmouse(int i, void *data)
+int sucmouse(int i, int x, int y, void *data)
 {
 	data_t *s;
 
 	s = (data_t*)data;
+	mlx_mouse_get_pos(s->mlx_win, &x, &y);
+	printf("%d, %d\n", x, y);
 	mlx_destroy_image(s->mlx_ptr, s->img_ptr);
 	mlx_destroy_window(s->mlx_ptr, s->mlx_win);
 	printf("mouse : %d\n", i);

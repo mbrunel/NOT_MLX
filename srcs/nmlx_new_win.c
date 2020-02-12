@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 10:10:04 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/11 16:03:18 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/12 17:09:17 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	*mlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title)
 	if (!(new->event = malloc(sizeof(t_event))))
 		return (NULL);
 	new->event->next = NULL;
-	new->event->funct_ptr = &exit_no_leaks;
+	new->event->funct_ptr = &sig_kill;
 	new->event->param = mlx_ptr;
 	new->event->event = EXIT;
 	new->next = NULL;

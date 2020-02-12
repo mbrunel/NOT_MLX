@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 11:11:50 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/11 15:26:56 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/12 17:09:38 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,18 @@
 # include "SDL2/SDL.h"
 # include "X.h"
 # include "mlx.h"
+# include "unofficial.h"
 
 #define EXIT -1
 
+#define DELAY 50
+#define INTERVAL
+
 typedef struct		s_event
 {
-	int				(*funct_ptr)(int i, void *);
+	int				(*funct_ptr)();
 	void			*param;
+	char			m;
 	int				event;
 	struct s_event	*next;
 }					t_event;
@@ -39,6 +44,7 @@ typedef struct		s_win
 	SDL_Window		*win;
 	SDL_Renderer	*render;
 	t_event			*event;
+
 	struct s_win	*next;
 }					t_win;
 
@@ -51,13 +57,24 @@ typedef struct		s_img
 	struct s_img	*next;
 }					t_img;
 
+typedef struct		s_loop
+{
+	int				(*funct_ptr)();
+	void			*param;
+	struct s_loop	*next;
+}					t_loop;
+
 typedef struct		s_nmlx
 {
 	t_win			*win;
 	t_img			*img;
+	t_loop			*loop;
+	char			smart_hook;
+	char			key_repeat;
+	char			loop_stop;
 }					t_nmlx;
 
-int					exit_no_leaks(int i, void*);
+int					sig_kill(int i, void *mlx_ptr);
 void				sdl_to_x(int *i, int *x_event, SDL_Event *sdl_event);
 
 #endif

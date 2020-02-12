@@ -6,11 +6,11 @@
 #    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 10:55:19 by mbrunel           #+#    #+#              #
-#    Updated: 2020/02/12 09:53:01 by mbrunel          ###   ########.fr        #
+#    Updated: 2020/02/12 17:25:07 by mbrunel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lib_not_mlx.a
+NAME = libnmlx.a
 LIB_KEYCODE_NAME =
 
 LIBS_DIR = libs
@@ -35,10 +35,15 @@ SRCS =		nmlx_init.c\
 			nmlx_new_img.c\
 			nmlx_get_data_address.c\
 			nmlx_hook.c\
-			exit_no_leaks.c\
-			sdl_to_x.c\
+			nmlx_quit.c\
+			nmlx_sdl_to_x.c\
 			nmlx_destroy_img.c\
-			nmlx_destroy_win.c
+			nmlx_destroy_win.c\
+			nmlx_get_mouse_pos.c\
+			nmlx_loop_hook.c\
+			nmlx_smart_hook.c\
+			nmlx_do_key_repeat.c\
+			nmlx_loop_stop.c
 
 OBJS =		$(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
 

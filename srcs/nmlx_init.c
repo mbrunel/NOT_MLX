@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 10:50:53 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/10 09:36:23 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/12 16:46:43 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ void *mlx_init(void)
 		return (NULL);
 	s->win = NULL;
 	s->img = NULL;
+	s->loop = NULL;
 	if (SDL_Init(SDL_INIT_VIDEO))
 		return (NULL);
+	s->smart_hook = 0;
+	s->key_repeat = 1;
+	s->loop_stop = 0;
 	return ((void*)s);
 }
