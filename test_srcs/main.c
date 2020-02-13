@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 07:28:46 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/13 14:33:36 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/13 17:05:44 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int main(void)
 	if (mlx_put_image_to_window(data.mlx_ptr, data.mlx_win, data.img_ptr, 0, 0) == -1)
 		return (fail(5));
 	mlx_hook(data.mlx_win, 2, (1L<<0), &suckey, (void*)&data);
-	mlx_hook(data.mlx_win, 4, (1L<<0), &pressmouse, (void*)&data);
-	mlx_hook(data.mlx_win, 5, (1L<<0), &releasemouse, (void*)&data);
+	mlx_hook(data.mlx_win, 4, (1L<<2), &pressmouse, (void*)&data);
+	mlx_hook(data.mlx_win, 5, (1L<<3), &releasemouse, (void*)&data);
     mlx_loop(data.mlx_ptr);
     return (EXIT_SUCCESS);
 }
