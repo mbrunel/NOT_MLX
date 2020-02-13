@@ -98,6 +98,10 @@ these features are added on my miniRT if you want a proper example.
 
 * [SDL2](https://www.libsdl.org/download-2.0.php)
 
+## Contributing
+
+If you find bugs or have ideas for improvments don't hesitate to fork or message me on slack.
+
 ## License
 
 This is licensed under the GNU-3 License - see the [LICENSE.md](LICENSE.md) file for details
