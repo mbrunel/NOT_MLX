@@ -70,7 +70,7 @@ mlx_hook() can manage events :
 * the given function will be called with the given parameter when the given event is triggered.
 * if the want your function to be called after a keyboard even then it must be defined like that : foo(int i, void *param);
 
-i will be the keycode of the touch which triggered the keycode. (see the [MAC OS keycodes](https://eastmanreference.com/complete-list-of-applescript-key-codes) for further description.)
+i will be the keycode of the touch which triggered the event. (see the [MAC OS keycodes](https://eastmanreference.com/complete-list-of-applescript-key-codes) for further description.)
 
 * else if you want it to be called by a mouse event : bar(int i, int x, int y, void *param);
 
