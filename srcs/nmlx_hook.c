@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 09:11:59 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/12 14:05:59 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/13 14:44:46 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param
 	new->event = x_event;
 	new->funct_ptr = funct;
 	new->param = param;
+	new->to_do = 0;
 	if (x_event == ButtonPress || x_event == ButtonRelease)
 		new->m = 1;
 	else

@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 11:06:29 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/12 17:06:55 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/13 15:18:40 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	mlx_loop (void *mlx_ptr)
 	t_loop		*loop_node;
 	t_nmlx		*s;
 	int			i;
-	int			x;
-	int			y;
 
 	s = (t_nmlx*)mlx_ptr;
 	while (1)
@@ -40,23 +38,35 @@ int	mlx_loop (void *mlx_ptr)
 				if (x_event && event->event == x_event)
 				{
 					if (event->m)
-					{
-						SDL_GetMouseState(&x, &y);
-						(*(event->funct_ptr))(i, x, y, event->param);
-					}
+						SDL_GetMouseState(&event->x, &event->y);
 					else if (sdl_event.key.repeat && !s->key_repeat)
 					{
 						event = event->next;
 						continue ;
 					}
-					else
-						(*(event->funct_ptr))(i, event->param);
+					event->to_do = 1;
 					break ;
 				}
 				event = event->next;
 			}
 		}
-		if (s->smart_hook && !x_event)
+		if (s->loop_stop)
+			break ;
+		x_event = 0;
+		while (event)
+		{
+			if (event->to_do)
+			{
+				event->to_do = 0;
+				x_event = 1;
+				if (event->m)
+					(*(event->funct_ptr))(i, event->x, event->y, event->param);
+				else
+					(*(event->funct_ptr))(i, event->param);
+			}
+			event = event->next;
+		}
+		if (!x_event && s->smart_hook)
 			continue ;
 		loop_node = s->loop;
 		while (loop_node)
@@ -64,8 +74,6 @@ int	mlx_loop (void *mlx_ptr)
 			(*(loop_node->funct_ptr))(loop_node->param);
 			loop_node = loop_node->next;
 		}
-		if (s->loop_stop)
-			break ;
 	}
 	return (0);
 }

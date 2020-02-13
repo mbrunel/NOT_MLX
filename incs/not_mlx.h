@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 11:11:50 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/12 17:09:38 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/13 15:05:07 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ typedef struct		s_event
 	void			*param;
 	char			m;
 	int				event;
+	char			to_do;
+	int				x;
+	int				y;
 	struct s_event	*next;
 }					t_event;
 
@@ -44,7 +47,6 @@ typedef struct		s_win
 	SDL_Window		*win;
 	SDL_Renderer	*render;
 	t_event			*event;
-
 	struct s_win	*next;
 }					t_win;
 

@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 07:28:46 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/12 14:05:28 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/13 14:33:36 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,22 @@ int	fail(int code)
 	return (EXIT_FAILURE);
 }
 
-int sucmouse(int i, int x, int y, void *data)
+int pressmouse(int i, int x, int y, void *data)
 {
 	data_t *s;
 
 	s = (data_t*)data;
-	mlx_mouse_get_pos(s->mlx_win, &x, &y);
-	printf("%d, %d\n", x, y);
-	mlx_destroy_image(s->mlx_ptr, s->img_ptr);
-	mlx_destroy_window(s->mlx_ptr, s->mlx_win);
-	printf("mouse : %d\n", i);
-	exit (0);
+	printf("PRESS\n");
+	return (0);
+}
+
+int releasemouse(int i, int x, int y, void *data)
+{
+	data_t *s;
+
+	s = (data_t*)data;
+	printf("RELEASE\n");
+	return (0);
 }
 
 int suckey(int i, void *data)
@@ -53,10 +58,8 @@ int suckey(int i, void *data)
 	data_t *s;
 
 	s = (data_t*)data;
-	mlx_destroy_image(s->mlx_ptr, s->img_ptr);
-	mlx_destroy_window(s->mlx_ptr, s->mlx_win);
 	printf("key : %d\n", i);
-	exit (0);
+	return (0);
 }
 
 int main(void)
@@ -86,9 +89,8 @@ int main(void)
 	if (mlx_put_image_to_window(data.mlx_ptr, data.mlx_win, data.img_ptr, 0, 0) == -1)
 		return (fail(5));
 	mlx_hook(data.mlx_win, 2, (1L<<0), &suckey, (void*)&data);
-	mlx_hook(data.mlx_win, 3, (1L<<0), &suckey, (void*)&data);
-	mlx_hook(data.mlx_win, 4, (1L<<0), &sucmouse, (void*)&data);
-	mlx_hook(data.mlx_win, 5, (1L<<0), &sucmouse, (void*)&data);
+	mlx_hook(data.mlx_win, 4, (1L<<0), &pressmouse, (void*)&data);
+	mlx_hook(data.mlx_win, 5, (1L<<0), &releasemouse, (void*)&data);
     mlx_loop(data.mlx_ptr);
     return (EXIT_SUCCESS);
 }
