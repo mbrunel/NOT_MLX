@@ -37,44 +37,46 @@ gcc *.o $(libpath)/NOT_MLX/libnmlx.a $(flags) -lm
 ```
 same for pthread etc...
 
+You can see the Makefile's rule [test](Makefile) for a basic idea of what it should look like.
+You can also try to see the Makefile of my [miniRT](https://github.com/mbrunel/miniRTA2).
+
 If you still have problem don't hesitate to find me on Slack (login : mbrunel)
 
 If you are from Epitech well gl hf (but you should be able to afford a Mac anyway)
 
 ### MLX tutorial
 
-since nmlx do approximatively the same things than the mlx here's a tuto for beginners
+since nmlx do approximatively the same things than the mlx here's a tuto for beginners :
 
-```
-start by use mlx_init()
-then call mlx_new_window() , mlx_new_img(), and mlx_get_data_addr()
-fill the returned buffer with the pixels description (ARGB8888) format.
-call mlx_put_img_to_win()
-```
-with that you should have a window with something put in it.
+with that you should have a window with something put in it :
+
+* start by use mlx_init()
+* call mlx_new_window() , mlx_new_img(), and mlx_get_data_addr()
+* fill the returned buffer with the pixels description (ARGB8888) format.
+* call mlx_put_img_to_win()
+
 
 if you want to go further :
 
-```
-put the mlx_put_img_to_win() call into an other function.
-call mlx_loop_hook() with the addr of that funct.
-the previous function will be called constantly permitting a real time randering.
-```
+* put the mlx_put_img_to_win() call into an other function.
+* call mlx_loop_hook() with the addr of that funct.
+* the previous function will be called constantly permitting a real time randering.
 
-```
-mlx_hook() can manage events.
-read the incs/X.h file for descriptions of these events.
-the given function will be called with the given parameter when the given event is triggered.
 
-- if the want your function to be called after a keyboard even then it must be defined like that : foo(int i, void *param);
-i will be the keycode of the touch which triggered the keycode.
-see the MAC OS keycodes for further description.
+mlx_hook() can manage events :
 
-- else if you want it to be called by a mouse event : bar(int i, int x, int y, void *param);
+--- read the [X.h](incs/X.h) file for descriptions of these events.
+
+* the given function will be called with the given parameter when the given event is triggered.
+* if the want your function to be called after a keyboard even then it must be defined like that : foo(int i, void *param);
+
+i will be the keycode of the touch which triggered the keycode. (see the [MAC OS keycodes](https://eastmanreference.com/complete-list-of-applescript-key-codes) for further description.)
+
+* else if you want it to be called by a mouse event : bar(int i, int x, int y, void *param);
+
 i is the button, x and y are the coordinates of the mouse when she triggered the event (0,0) for the top left corner of the main window.
-```
 
-see the [test_srcs/main.c](test_srcs/main.c) file for a basic implementation of nmlx.
+see the [test_main.c](test_srcs/main.c) file for a basic implementation of nmlx.
 
 ## Extra features
 
@@ -89,10 +91,12 @@ see the unofficial.h header for the protos.
 * nmlx_quit : you should use this after you destroyed all your images and windows.
               it will free all the remaining ressources used by nmlx.
               put it just after the mlx_loop call (it will itself be called just after the nmlx_loop_stop call)
- 
+
+these features are added on my miniRT if you want a proper example.
+
 ## Built With
 
-* SDL2
+* [SDL2](https://www.libsdl.org/download-2.0.php)
 
 ## License
 
