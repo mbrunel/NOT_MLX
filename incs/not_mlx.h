@@ -19,7 +19,6 @@
 # include <fcntl.h>
 # include <string.h>
 
-# include "libft.h"
 # include "SDL2/SDL.h"
 # include "X.h"
 # include "mlx.h"
