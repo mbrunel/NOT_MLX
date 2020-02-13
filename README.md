@@ -7,13 +7,13 @@ Parce qu'mlx aime les leaks (et n'est pas portable btw)
 ```
 The original minilibx one was made by Olivier Crouzet.         __           __
 I don't exactly know how the copyright stuff should be handled   \__(*_*)__/
-only the core functions were implemented.
-for example i gave up on the png stuff.
 ```
 
 ### Prerequisites
 
 None : just take your validated (or not) project and follow the guide below to make it compile easily on any platform
+the keycode to use to deal with events will be the MAC OS ones as it is already the case when you use the mlx in 42.
+This implementation should work as fine as it works actually in MAC OS on any platform.
 
 ### Installing
 
