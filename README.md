@@ -38,7 +38,7 @@ gcc *.o $(libpath)/NOT_MLX/libnmlx.a $(flags) -lm
 same for pthread etc...
 
 You can see the Makefile's rule [test](Makefile) for a basic idea of what it should look like.
-You can also try to see the Makefile of my [miniRT](https://github.com/mbrunel/miniRTA2).
+You can also try to see the Makefile of my [miniRT](https://github.com/mbrunel/miniRTA2/Makefile).
 
 If you still have problem don't hesitate to find me on Slack (login : mbrunel)
 
