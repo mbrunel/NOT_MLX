@@ -38,6 +38,7 @@ gcc *.o $(libpath)/NOT_MLX/libnmlx.a $(flags) -lm
 same for pthread etc...
 
 If you still have problem don't hesitate to find me on Slack (login : mbrunel)
+
 If you are from Epitech well gl hf (but you should be able to afford a Mac anyway)
 
 ### MLX tutorial
@@ -73,7 +74,7 @@ see the MAC OS keycodes for further description.
 i is the button, x and y are the coordinates of the mouse when she triggered the event (0,0) for the top left corner of the main window.
 ```
 
-see the test_srcs/main.c file for (i believe it) a rather proper implementation of nmlx.
+see the [test_srcs/main.c](test_srcs/main.c) file for (i believe it) a rather proper implementation of nmlx.
 
 ## Extra features
 
@@ -95,4 +96,4 @@ see the unofficial.h header for the protos.
 
 ## License
 
-This is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This is licensed under the GNU-3 License - see the [LICENSE.md](LICENSE.md) file for details
