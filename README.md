@@ -74,7 +74,7 @@ see the MAC OS keycodes for further description.
 i is the button, x and y are the coordinates of the mouse when she triggered the event (0,0) for the top left corner of the main window.
 ```
 
-see the [test_srcs/main.c](test_srcs/main.c) file for (i believe it) a rather proper implementation of nmlx.
+see the [test_srcs/main.c](test_srcs/main.c) file for a basic implementation of nmlx.
 
 ## Extra features
 
