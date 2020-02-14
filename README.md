@@ -38,9 +38,9 @@ put before the link commande line
 ```
 $(MAKE) -C NOT_MLX
 ```
-then replace your previous link line which should be something like that :
+then replace your previous link line which should be something like one of these :
 ```
-gcc *.o libmlx.dylib -o miniRT  ||  gcc *.o mlx/libmlx.a -o miniRT|| gcc *.o -lmlx -o miniRT
+gcc *.o libmlx.dylib -o miniRT  ||  gcc *.o mlx/libmlx.a -o miniRT || gcc *.o -lmlx -o miniRT
 ```
 by :
 ```
