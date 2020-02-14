@@ -31,15 +31,23 @@ This implementation should work as fine as it works actually in MAC OS on any pl
 
 ### Installing
 
-* first you have to put this repo in the libs directory or in the root of your project;
+* first you have to put this repo in the root of your project;
 * then you have to do the following adjustment in your makefile :
 
+put before the link commande line
 ```
-$(MAKE) -C NOT_MLX before the link
-gcc *.o libmlx.dylib (or -lmlx) should become gcc *.o $(libpath)/NOT_MLX/libnmlx.a $(flags)
-with flags = `NOT_MLX/SDL2-2.0.10/sdl2-config --cflags --libs`
+$(MAKE) -C NOT_MLX
 ```
-you can keep the same mlx.h header.
+then replace your previous link line which should be something like that :
+```
+gcc *.o libmlx.dylib -o miniRT  ||  gcc *.o mlx/libmlx.a -o miniRT|| gcc *.o -lmlx -o miniRT
+```
+by :
+```
+gcc *.o NOT_MLX/libnmlx.a `NOT_MLX/libs/SDL2-2.0.10/sdl2-config --cflags --libs` -o miniRT
+```
+
+you can keep the same includes and the same source code, the keybinds you puted for MAC OS are translated by the lib
 add unnoficial.h if you want to add the extra features.
 
 if you don't success :
@@ -47,7 +55,7 @@ try to delete all your -Werror flags because linux's gcc has the habit to add so
 don't forget that linux's gcc want you to add the used library explicetly during the link
 so if you use the libmath for example : 
 ```
-gcc *.o $(libpath)/NOT_MLX/libnmlx.a $(flags) -lm
+gcc *.o -lm
 ```
 same for pthread etc...
 
