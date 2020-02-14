@@ -10,14 +10,14 @@ I don't exactly know how the copyright stuff should be handled   \__(*_*)__/
 all the functions of the current mlx are defined;
 however the following functions do nothing and return 0 or NULL :
 ```
-int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color); (useless trash)
-unsigned int	mlx_get_color_value(void *mlx_ptr, int color); (didn't really understand what it does)
-int	mlx_expose_hook (void *win_ptr, int (*funct_ptr)(), void *param); (same here)
+mlx_pixel_put(); (useless trash)
+mlx_get_color_value(); (didn't really understand what it does)
+mlx_expose_hook (); (same here)
 
-int	mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string);|           SORRY
-void	*mlx_xpm_to_image(void *mlx_ptr, char **xpm_data, int *width, int *height);         | I don't yet manage to compile
-void	*mlx_xpm_file_to_image(void *mlx_ptr, char *filename, int *width, int *height);     | flawlessly sdl-extension on OS X
-void  *mlx_png_file_to_image(void *mlx_ptr, char *file, int *width, int *height);           |  So coming soon (maybe)
+mlx_string_put();            |             SORRY
+*mlx_xpm_to_image();         | I don't yet manage to compile
+*mlx_xpm_file_to_image();    | flawlessly sdl-extension on OS X
+*mlx_png_file_to_image();    |      So coming soon (maybe)
 
 int	mlx_do_sync(void *mlx_ptr); (maybe usefull for libX but it seems useless anyway)
 ```
@@ -46,25 +46,24 @@ by :
 ```
 gcc *.o NOT_MLX/libnmlx.a `NOT_MLX/libs/SDL2-2.0.10/sdl2-config --cflags --libs` -o miniRT
 ```
-
-you can keep the same includes and the same source code, the keybinds you puted for MAC OS are translated by the lib
+you can keep the same includes and the same source code
 add unnoficial.h if you want to add the extra features.
 
 if you don't success :
-try to delete all your -Werror flags because linux's gcc has the habit to add some random warnings
-don't forget that linux's gcc want you to add the used library explicetly during the link
+* try to delete all your -Werror flags because linux's gcc has the habit to add some random warnings
+* don't forget that linux's gcc want you to add the used library explicetly during the link
+
 so if you use the libmath for example : 
 ```
 gcc *.o -lm
 ```
 same for pthread etc...
 
-You can see the Makefile's rule [test](Makefile) for a basic idea of what it should look like.
-You can also try to see the Makefile of my [miniRT](https://github.com/mbrunel/miniRTA2/Makefile).
+If you still have problems :
 
-If you still have problem don't hesitate to find me on Slack (login : mbrunel)
-
-If you are from Epitech well gl hf (but you should be able to afford a Mac anyway)
+* You can see the Makefile's rule [test](Makefile) for a basic idea of what it should look like.
+* You can also try to see the Makefile of my [miniRT](https://github.com/mbrunel/miniRTA2/Makefile).
+* Finally you can contact me on Slack (login : mbrunel, 42 Paris)
 
 ### MLX tutorial
 
@@ -85,18 +84,20 @@ if you want to go further :
 * the previous function will be called constantly permitting a real time randering.
 
 
-mlx_hook() can manage events :
+mlx_hook() can manage events : 
 
 --- read the [X.h](incs/X.h) file for descriptions of these events.
 
 * the given function will be called with the given parameter when the given event is triggered.
+
 * if the want your function to be called after a keyboard even then it must be defined like that : foo(int i, void *param);
 
-i will be the keycode of the touch which triggered the event. (see the [MAC OS keycodes](https://eastmanreference.com/complete-list-of-applescript-key-codes) for further description.)
+     i will be the keycode of the touch which triggered the event. (see the [MAC OS keycodes]( https://eastmanreference.com/complete-list-of-applescript-key-codes) for further description.)
+
 
 * else if you want it to be called by a mouse event : bar(int i, int x, int y, void *param);
 
-i is the button, x and y are the coordinates of the mouse when she triggered the event (0,0) for the top left corner of the main window.
+     i is the button, x and y are the coordinates of the mouse when she triggered the event (0,0) for the top left corner of the main window.
 
 see the [test_main.c](test_srcs/main.c) file for a basic implementation of nmlx.
 
