@@ -29,7 +29,7 @@ None : just take your validated (or not) project and follow the guide below to m
 the keycode to use to deal with events will be the MAC OS ones as it is already the case when you use the mlx in 42.
 This implementation should work as fine as it works actually in MAC OS on any platform.
 
-### Installing
+## Installing
 
 * first you have to put this repo in the root of your project;
 * then you have to do the following adjustment in your makefile :
@@ -62,10 +62,10 @@ same for pthread etc...
 If you still have problems :
 
 * You can see the Makefile's rule [test](Makefile) for a basic idea of what it should look like.
-* You can also try to see the Makefile of my [miniRT](https://github.com/mbrunel/miniRTA2/Makefile).
+* You can also try to see the Makefile of my [miniRT](https://github.com/mbrunel/miniRTA2).
 * Finally you can contact me on Slack (login : mbrunel, 42 Paris)
 
-### MLX tutorial
+## MLX tutorial
 
 since nmlx do approximatively the same things than the mlx here's a tuto for beginners :
 
@@ -117,14 +117,14 @@ see the unofficial.h header for the protos.
 
 these features are added on my miniRT if you want a proper example.
 
-## Built With
+### Built With
 
 * [SDL2](https://www.libsdl.org/download-2.0.php)
 
-## Contributing
+### Contributing
 
 If you find bugs or have ideas for improvments don't hesitate to fork or message me on slack.
 
-## License
+### License
 
 This is licensed under the GNU-3 License - see the [LICENSE.md](LICENSE.md) file for details
