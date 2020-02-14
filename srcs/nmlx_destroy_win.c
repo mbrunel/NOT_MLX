@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 15:35:44 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/14 01:57:17 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/14 21:12:44 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	mlx_clear_window(void *mlx_ptr, void *win_ptr)
 
 	win = (t_win*)win_ptr;
 	(void)mlx_ptr;
-	SDL_RenderClear(win->render);
+	if (SDL_RenderClear(win->render) == -1)
+		return (-1);
 	SDL_RenderPresent(win->render);
+	return (0);
 }
