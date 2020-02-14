@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 11:11:50 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/13 15:05:07 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/14 00:26:56 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 
 # include "SDL2/SDL.h"
+# include "SDL2/SDL_image.h"
 # include "X.h"
 # include "mlx.h"
 # include "unofficial.h"

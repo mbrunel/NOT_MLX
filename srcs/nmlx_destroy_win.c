@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nmlx_destroy_window.c                              :+:      :+:    :+:   */
+/*   nmlx_destroy_win.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 15:35:44 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/11 16:04:26 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/14 01:57:17 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,14 @@ int			mlx_destroy_window(void *mlx_ptr, void *win_ptr)
 	node->next = win->next;
 	free_win(win);
 	return (0);
+}
+
+int	mlx_clear_window(void *mlx_ptr, void *win_ptr)
+{
+	t_win *win;
+
+	win = (t_win*)win_ptr;
+	(void)mlx_ptr;
+	SDL_RenderClear(win->render);
+	SDL_RenderPresent(win->render);
 }

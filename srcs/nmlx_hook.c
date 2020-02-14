@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 09:11:59 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/13 17:05:08 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/14 00:10:58 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,18 @@ int	mlx_key_hook (void *win_ptr, int (*funct_ptr)(), void *param)
 {
 	return (mlx_hook(win_ptr, 3, 0, funct_ptr, param));
 }
+
+int	mlx_do_sync(void *mlx_ptr)
+{
+	(void)mlx_ptr;
+	return (0);
+}
+
+int	mlx_expose_hook (void *win_ptr, int (*funct_ptr)(), void *param)
+{
+	(void)win_ptr;
+	(void)funct_ptr;
+	(void)param;
+	return (0);
+}
+

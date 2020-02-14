@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 10:10:04 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/12 17:09:17 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/02/14 01:54:37 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	*mlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title)
 		return (NULL);
 	if (!(new->render = SDL_CreateRenderer((SDL_Window*)new->win, -1, 0)))
 		return (NULL);
+	SDL_SetRenderDrawColor(new->render, 0, 0, 0, 255);
 	if (!(new->event = malloc(sizeof(t_event))))
 		return (NULL);
 	new->event->next = NULL;
