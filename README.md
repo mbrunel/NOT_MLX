@@ -3,10 +3,10 @@
 Parce qu'mlx aime les leaks (et n'est pas portable btw)
 
 ### WARNINGS
-
+```
 The original minilibx one was made by Olivier Crouzet.         __           __
 I don't exactly know how the copyright stuff should be handled   \__(*_*)__/
-
+```
 all the functions of the current mlx are defined;
 however the following functions do nothing and return 0 or NULL :
 ```
