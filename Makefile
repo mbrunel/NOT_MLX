@@ -60,7 +60,7 @@ C_NONE = \033[0m
 
 all : $(NAME)
 
-$(NAME): $(OBJS) $(SDL_DIR) $(DIR_LIB_SDL) $(SDL_IMG_DIR) $(DIR_LIB_SDL_IMG)
+$(NAME): $(OBJS) $(SDL_DIR) $(DIR_LIB_SDL) #$(SDL_IMG_DIR) $(DIR_LIB_SDL_IMG)
 	-@ar rc $(NAME) $(LIB_SDL) $(LIB_SDL_IMG) $(OBJS)
 	@ranlib $@
 	@printf "\n$(C_GREEN)[%s]$(C_NONE)\n" $@
