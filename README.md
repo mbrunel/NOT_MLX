@@ -14,7 +14,7 @@ mlx_pixel_put(); (useless trash)
 mlx_get_color_value(); (didn't really understand what it does)
 mlx_expose_hook (); (same here)
 
-mlx_string_put();            |             SORRY
+mlx_string_put();           |             SORRY
 mlx_xpm_to_image();         | I don't yet manage to compile
 mlx_xpm_file_to_image();    | flawlessly sdl-extension on OS X
 mlx_png_file_to_image();    |      So coming soon (maybe)
