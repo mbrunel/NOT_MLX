@@ -14,14 +14,13 @@ int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color); (usele
 unsigned int	mlx_get_color_value(void *mlx_ptr, int color); (didn't really understand what it does)
 int	mlx_expose_hook (void *win_ptr, int (*funct_ptr)(), void *param); (same here)
 
-int	mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string);  |           SORRY
+int	mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string);|           SORRY
 void	*mlx_xpm_to_image(void *mlx_ptr, char **xpm_data, int *width, int *height);         | I don't yet manage to compile
 void	*mlx_xpm_file_to_image(void *mlx_ptr, char *filename, int *width, int *height);     | flawlessly sdl-extension on OS X
-void  *mlx_png_file_to_image(void *mlx_ptr, char *file, int *width, int *height);         |  So coming soon (maybe)
+void  *mlx_png_file_to_image(void *mlx_ptr, char *file, int *width, int *height);           |  So coming soon (maybe)
 
 int	mlx_do_sync(void *mlx_ptr); (maybe usefull for libX but it seems useless anyway)
 ```
-
 if you really find an interest in some of these of these functions don't hesitate to fork (:
 
 ### Prerequisites
