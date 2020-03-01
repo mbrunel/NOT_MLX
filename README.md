@@ -107,13 +107,12 @@ For the functions prototypes, see unofficial.h
 
 4 functions : 
 
-* nmlx_smart_hook_on/off : off by default, usefull for static graphics : (the loop_hooked function will be called only if an hooked event was triggered
+* nmlx_smart_hook_on/off : Off by default, usefull for static graphics : (the loop_hooked function will be called only if an hooked event was triggered
 
-* nmlx_loop_stop : the mlx_loop function will return.
+* nmlx_loop_stop : The mlx_loop function will return.
 
-* nmlx_quit : you should use this after you destroyed all your images and windows.
-              it will free all the remaining ressources used by nmlx.
-              put it just after the mlx_loop call (it will itself be called just after the nmlx_loop_stop call)
+* nmlx_quit : You should use this after you destroyed all your images and windows.
+              It will free all the remaining ressources used by nmlx internally.
 
 these features are added on my miniRT if you want a proper example.
 
@@ -123,8 +122,8 @@ these features are added on my miniRT if you want a proper example.
 
 ### Contributing
 
-If you find bugs or have ideas for improvments don't hesitate to fork or message me on slack.
+If you find bugs or have any ideas of improvements, start an new issue or message me on slack.
 
 ### License
 
-This is licensed under the GNU-3 License - see the [LICENSE.md](LICENSE.md) file for details
+This is licensed under the LGPL-3.0 License - see the [LICENSE.md](LICENSE.md) file for details
