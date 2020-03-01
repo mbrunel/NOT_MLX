@@ -22,6 +22,7 @@ int	mlx_loop (void *mlx_ptr)
 	int			i;
 
 	s = (t_nmlx*)mlx_ptr;
+	s->loop_stop = 0;
 	while (1)
 	{
 		while (SDL_PollEvent(&sdl_event))
