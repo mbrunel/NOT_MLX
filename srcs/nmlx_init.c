@@ -28,6 +28,5 @@ void *mlx_init(void)
 	}
 	s->smart_hook = 0;
 	s->key_repeat = 1;
-	s->loop_stop = 0;
 	return ((void*)s);
 }
