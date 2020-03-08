@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 07:28:46 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/03/08 05:00:09 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/03/08 05:22:09 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ int main(void)
 	if (!(img = (int*)mlx_get_data_addr(data.img_ptr, &(info.bperpix), &(info.sizeline), &(info.endian))))
 		return (fail(4));
 	info.sizeline /= 4;
-	IMG_LoadTexture(((t_win*)(data.mlx_win))->render, "cloud.png");
 	while (++y < HEIGHT)
 	{
 		x = -1;

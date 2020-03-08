@@ -6,7 +6,7 @@
 #    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 10:55:19 by mbrunel           #+#    #+#              #
-#    Updated: 2020/03/08 05:17:41 by mbrunel          ###   ########.fr        #
+#    Updated: 2020/03/08 05:23:02 by mbrunel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,10 @@ OBJS_DIR = objs
 SDL_TAR = $(LIBS_DIR)/SDL2-2.0.10.tar.gz
 SDL_UNTAR = SDL2-2.0.10
 SDL_DIR = $(LIBS_DIR)/$(SDL_UNTAR)
-INC_SDL = $(SDL_DIR)/include
 DIR_LIB_SDL = $(SDL_DIR)/lib
 
 CC =		gcc
-CFLAGS =	-Wall -Wextra -I$(INCS_DIR) `$(SDL_DIR)/sdl2-config --cflags` -I$(SDL_DIR)/include #`sdl2-config --cflags`
+CFLAGS =	-Wall -Wextra -I$(INCS_DIR) `$(SDL_DIR)/sdl2-config --cflags` #`sdl2-config --cflags`
 LINKER_FLAGS =	`$(SDL_DIR)/sdl2-config --libs` #`sdl2-config --libs`
 
 SRCS =		nmlx_init.c\
