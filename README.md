@@ -16,7 +16,7 @@ mlx_expose_hook (); (same here)
 
 mlx_string_put();           |                SORRY
 mlx_xpm_to_image();         |       I didn't manage to compile
-mlx_xpm_file_to_image();    |         SDL-image and SDL-ttf 
+mlx_xpm_file_to_image();    |         SDL-image and SDL-ttf
 mlx_png_file_to_image();    |       for cross-platform goals
 
 mlx_do_sync(void *mlx_ptr); (maybe usefull for libX but it seems useless anyway)
@@ -53,7 +53,7 @@ If you don't success :
 * Try to delete all your -Werror flags because linux's gcc has the habit to add some random warnings
 * Don't forget that linux's gcc want you to add the used library explicetly during the link
 
-So if you use the libmath for example : 
+So if you use the libmath for example :
 ```
 gcc *.o -lm
 ```
@@ -92,7 +92,7 @@ If you want to go further :
 * The previous function will be called constantly permitting a real time randering.
 
 
-mlx_hook() can manage events : 
+mlx_hook() can manage events :
 
 --- Read the [X.h](incs/X.h) file for descriptions of these events.
 
@@ -113,14 +113,15 @@ See the [test_main.c](test_srcs/main.c) file for a basic implementation of nmlx.
 
 For the functions prototypes, see unofficial.h
 
-4 functions : 
+4 functions :
 
-* nmlx_smart_hook_on/off : Off by default, usefull for static graphics : (the loop_hooked function will be called only if an hooked event was triggered
+* nmlx_smart_hook_on/off : off by default, usefull for static graphics : (the loop_hooked function will be called only if an hooked event was triggered
 
-* nmlx_loop_stop : The mlx_loop function will return.
+* nmlx_loop_stop : the mlx_loop function will return.
 
-* nmlx_quit : You should use this after you destroyed all your images and windows.
-              It will free all the remaining ressources used by nmlx internally.
+* nmlx_quit : you should use this after you destroyed all your images and windows.
+              it will free all the remaining ressources used by nmlx.
+              put it just after the mlx_loop call (it will itself be called just after the nmlx_loop_stop call)
 
 these features are added on my miniRT if you want a proper example.
 
@@ -134,4 +135,4 @@ If you find bugs or have any ideas of improvements, start a new issue or message
 
 ### License
 
-This is licensed under the LGPL-3.0 License - see the [LICENSE.md](LICENSE.md) file for details
+This is licensed under the GNU-3 License - see the [LICENSE.md](LICENSE.md) file for details
