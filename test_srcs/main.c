@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 07:28:46 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/14 01:52:58 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/03/08 05:00:09 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 #define HEIGHT 600
 #define WIDTH 600
+
+#define COLOR 0x00ffff
 
 typedef struct    data_s
 {
@@ -93,13 +95,13 @@ int main(void)
 	if (!(img = (int*)mlx_get_data_addr(data.img_ptr, &(info.bperpix), &(info.sizeline), &(info.endian))))
 		return (fail(4));
 	info.sizeline /= 4;
+	IMG_LoadTexture(((t_win*)(data.mlx_win))->render, "cloud.png");
 	while (++y < HEIGHT)
 	{
 		x = -1;
 		while (++x < WIDTH)
-			img[y * WIDTH + x] =  x;
+			img[y * WIDTH + x] = COLOR;
 	}
-
 	mlx_hook(data.mlx_win, 2, (1L<<0), &suckey, (void*)&data);
 	mlx_hook(data.mlx_win, 4, (1L<<2), &pressmouse, (void*)&data);
 	mlx_hook(data.mlx_win, 5, (1L<<3), &releasemouse, (void*)&data);

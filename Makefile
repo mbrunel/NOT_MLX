@@ -6,7 +6,7 @@
 #    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 10:55:19 by mbrunel           #+#    #+#              #
-#    Updated: 2020/02/14 02:03:27 by mbrunel          ###   ########.fr        #
+#    Updated: 2020/03/08 05:17:41 by mbrunel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,15 +23,9 @@ SDL_DIR = $(LIBS_DIR)/$(SDL_UNTAR)
 INC_SDL = $(SDL_DIR)/include
 DIR_LIB_SDL = $(SDL_DIR)/lib
 
-SDL_IMG_TAR = $(LIBS_DIR)/SDL2_image-2.0.5.tar.gz
-SDL_IMG_UNTAR = SDL2_image-2.0.5
-SDL_IMG_DIR = $(LIBS_DIR)/$(SDL_IMG_UNTAR)
-INC_SDL_IMG = $(SDL_IMG_DIR)/include
-DIR_LIB_SDL_IMG = $(SDL_IMG_DIR)/lib
-
 CC =		gcc
-CFLAGS =	-Wall -Wextra -I$(INCS_DIR)
-LINKER_FLAGS =	`$(SDL_DIR)/sdl2-config --libs`
+CFLAGS =	-Wall -Wextra -I$(INCS_DIR) `$(SDL_DIR)/sdl2-config --cflags` -I$(SDL_DIR)/include #`sdl2-config --cflags`
+LINKER_FLAGS =	`$(SDL_DIR)/sdl2-config --libs` #`sdl2-config --libs`
 
 SRCS =		nmlx_init.c\
 			nmlx_loop.c\
@@ -60,7 +54,7 @@ C_NONE = \033[0m
 
 all : $(NAME)
 
-$(NAME): $(OBJS) $(SDL_DIR) $(DIR_LIB_SDL) #$(SDL_IMG_DIR) $(DIR_LIB_SDL_IMG)
+$(NAME): $(SDL_DIR) $(DIR_LIB_SDL) $(OBJS)
 	-@ar rc $(NAME) $(LIB_SDL) $(LIB_SDL_IMG) $(OBJS)
 	@ranlib $@
 	@printf "\n$(C_GREEN)[%s]$(C_NONE)\n" $@
@@ -80,23 +74,9 @@ $(DIR_LIB_SDL):
 	@printf "\n$(C_CYAN)[configuring SDL...]$(C_NONE)\n"
 	@cd $(SDL_DIR); ./configure --prefix=`pwd`/lib
 	@printf "$(C_CYAN)[compiling SDL...]$(C_NONE)\n"
-	-@make -C $(SDL_DIR)
-	-@make -C $(SDL_DIR) install >/dev/null
+	@make -C $(SDL_DIR)
+	@make -C $(SDL_DIR) install >/dev/null
 	@printf "\n$(C_GREEN)[SDL2]$(C_NONE)\n"
-
-# $(SDL_IMG_DIR) :
-# 	@tar -xf $(SDL_IMG_TAR)
-# 	mv $(SDL_IMG_UNTAR) $(SDL_IMG_DIR)
-# 	@printf "$(C_CYAN)starting SDL_IMG set up...]$(C_NONE)\n" $@
-
-# $(DIR_LIB_SDL_IMG):
-# 	@mkdir $(DIR_LIB_SDL_IMG)
-# 	@printf "\n$(C_CYAN)[configuring SDL_IMG...]$(C_NONE)\n"
-# 	@cd $(SDL_IMG_DIR); ./configure --prefix=`pwd`/lib
-# 	@printf "$(C_CYAN)[compiling SDL_IMG...]$(C_NONE)\n"
-# 	-@make -C $(SDL_IMG_DIR)
-# 	-@make -C $(SDL_IMG_DIR) install >/dev/null
-# 	@printf "\n$(C_GREEN)[SDL2_IMG]$(C_NONE)\n"
 
 EXEC = tester
 S = test_srcs/main.c
@@ -115,4 +95,6 @@ fullfclean : fclean
 
 re : fclean all
 
-re_full : fclean_resdl all
+re_full : fullfclean all
+
+.PHONY = clean fclean fullfclean re re_full all

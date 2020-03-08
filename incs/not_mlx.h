@@ -6,7 +6,7 @@
 /*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 11:11:50 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/02/14 00:26:56 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/03/08 05:14:51 by mbrunel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 # include <fcntl.h>
 # include <string.h>
 
-# include "SDL2/SDL.h"
-# include "SDL2/SDL_image.h"
+# include "SDL.h" 									//	if not installed
+													//	choose one of the two
+// #include <SDL2/SDL.h>  							//	if installed
+
 # include "X.h"
 # include "mlx.h"
 # include "unofficial.h"
