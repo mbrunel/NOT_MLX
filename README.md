@@ -14,14 +14,14 @@ mlx_pixel_put(); (useless trash)
 mlx_get_color_value(); (didn't really understand what it does)
 mlx_expose_hook (); (same here)
 
-mlx_string_put();           |             SORRY
-mlx_xpm_to_image();         | I don't yet manage to compile
-mlx_xpm_file_to_image();    | flawlessly sdl-extension on OS X
-mlx_png_file_to_image();    |      So coming soon (maybe)
+mlx_string_put();           |                SORRY
+mlx_xpm_to_image();         |       I didn't manage to compile
+mlx_xpm_file_to_image();    |         SDL-image and SDL-ttf 
+mlx_png_file_to_image();    |       for cross-platform goals
 
 mlx_do_sync(void *mlx_ptr); (maybe usefull for libX but it seems useless anyway)
 ```
-If you really find an interest in some of these of these functions don't hesitate to fork it(:
+If you really need some of these of these functions don't hesitate to fork it (:
 
 ### Prerequisites
 
@@ -63,7 +63,15 @@ If you still have problems :
 
 * You can see the Makefile's rule [test](Makefile) for a basic idea of what it should look like.
 * You can also try to see the Makefile of my [miniRT](https://github.com/42A2/miniRTA2).
-* Finally you can contact me on Slack (login : mbrunel, 42 Paris)
+* Finally you can contact me on Slack (login : mbrunel, 42 Paris) or open a new issue
+
+If you want to use this multiple times I recomand you to :
+
+* Install the library with your package manager and then
+* Replace "SDL2.h" by <SDL2/SDL2.h> in not_mlx.h
+* In the Makefile delete all the mentions of SDL2 and uncomments the sdl2-config flags
+
+It should spare you the compilation time of the sdl
 
 ## MLX tutorial
 
@@ -122,7 +130,7 @@ these features are added on my miniRT if you want a proper example.
 
 ### Contributing
 
-If you find bugs or have any ideas of improvements, start an new issue or message me on slack.
+If you find bugs or have any ideas of improvements, start a new issue or message me on slack.
 
 ### License
 
