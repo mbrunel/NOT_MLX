@@ -63,7 +63,15 @@ If you still have problems :
 
 * You can see the Makefile's rule [test](Makefile) for a basic idea of what it should look like.
 * You can also try to see the Makefile of my [miniRT](https://github.com/42A2/miniRTA2).
-* Finally you can contact me on Slack (login : mbrunel, 42 Paris)
+* Finally you can contact me on Slack (login : mbrunel, 42 Paris) or open a new issue
+
+If you want to use this multiple times I recomand you to :
+
+* Install the library with your package manager and then
+* Replace "SDL2.h" by <SDL2/SDL2.h> in not_mlx.h
+* In the Makefile delete all the mentions of SDL2 and uncomments the sdl2-config flags
+
+It should spare you the compilation time of the sdl
 
 ## MLX tutorial
 
