@@ -14,14 +14,14 @@ mlx_pixel_put(); (useless trash)
 mlx_get_color_value(); (didn't really understand what it does)
 mlx_expose_hook (); (same here)
 
-mlx_string_put();           |             SORRY
-mlx_xpm_to_image();         | I don't yet manage to compile
-mlx_xpm_file_to_image();    | flawlessly sdl-extension on OS X
-mlx_png_file_to_image();    |      So coming soon (maybe)
+mlx_string_put();           |                SORRY
+mlx_xpm_to_image();         |       I didn't manage to compile
+mlx_xpm_file_to_image();    |         SDL-image and SDL-ttf 
+mlx_png_file_to_image();    |       for cross-platform goals
 
 mlx_do_sync(void *mlx_ptr); (maybe usefull for libX but it seems useless anyway)
 ```
-If you really find an interest in some of these of these functions don't hesitate to fork it(:
+If you really need some of these of these functions don't hesitate to fork it (:
 
 ### Prerequisites
 
@@ -130,7 +130,7 @@ these features are added on my miniRT if you want a proper example.
 
 ### Contributing
 
-If you find bugs or have any ideas of improvements, start an new issue or message me on slack.
+If you find bugs or have any ideas of improvements, start a new issue or message me on slack.
 
 ### License
 
