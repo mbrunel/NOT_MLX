@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
+#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/15 01:02:41 by mbrunel           #+#    #+#              #
-#    Updated: 2020/10/15 20:29:51 by mbrunel          ###   ########.fr        #
+#    Updated: 2020/10/16 00:06:13 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,10 +68,10 @@ SRC=nmlx_destroy_img.c\
 OBJ:=$(patsubst %.c, $(D_OBJ)/%.o, $(SRC))
 DEP:=$(patsubst %.c, $(D_DEP)/%.d, $(SRC))
 
-all :
-	@$(MAKE) -s $(NAME)
+all : $(SDL2)
+	@$(MAKE) -sj $(NAME)
 
-$(NAME) : $(SDL2) $(OBJ)
+$(NAME) : $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@printf "$(BUILD_MSG) %s\n" $@
 
@@ -81,12 +81,12 @@ clean :
 
 fclean : clean
 	@rm -rf $(NAME) test
-	@printf "$(REMOVE_MSG) rm %s\n" $(NAME) test
+	@printf "$(REMOVE_MSG) rm %s\n" $(NAME)
 
 re : fclean all test
 
 $(SDL2) :
-	$(INSTALL_SDL2)
+	@$(INSTALL_SDL2)
 
 test : all
 	$(CC) $(CPPFLAGS) test.c $(LDFLAGS) -o test
@@ -97,8 +97,8 @@ $(BUILD) :
 
 -include $(DEP)
 
-$(D_OBJ)/%.o : $(D_SRC)/%.c  $(GIT) Makefile | $(BUILD)
+$(D_OBJ)/%.o : $(D_SRC)/%.c | $(BUILD)
 	@$(CC) $(CPPFLAGS) -c $< -o $@
-	@printf "$(BUILD_MSG) %s\n" $<
+	@printf "$(BUILD_MSG) %s\n" $(<F)
 
 .PHONY: all clean fclean re test
