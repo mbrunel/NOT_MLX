@@ -5,95 +5,100 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/02/08 10:55:19 by mbrunel           #+#    #+#              #
-#    Updated: 2020/03/08 05:23:02 by mbrunel          ###   ########.fr        #
+#    Created: 2020/02/15 01:02:41 by mbrunel           #+#    #+#              #
+#    Updated: 2020/10/15 20:24:11 by mbrunel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libnmlx.a
+NAME=libnmlx.a
 
-LIBS_DIR = libs
-INCS_DIR = incs
-SRCS_DIR = srcs
-OBJS_DIR = objs
+OS := $(shell uname)
+ifeq ($(OS), Linux)
+SDL2=/usr/include/SDL2
+INSTALL_SDL2:=sudo apt install libsdl2-dev
+else ifeq ($(OS), Darwin)
+SDL2=$(HOME)/.brew/Cellar/sdl2
+INSTALL_SDL2:=brew install sdl2
+endif
 
-SDL_TAR = $(LIBS_DIR)/SDL2-2.0.10.tar.gz
-SDL_UNTAR = SDL2-2.0.10
-SDL_DIR = $(LIBS_DIR)/$(SDL_UNTAR)
-DIR_LIB_SDL = $(SDL_DIR)/lib
+BUILD=.build
+D_SRC=src
+D_INC=inc
 
-CC =		gcc
-CFLAGS =	-Wall -Wextra -I$(INCS_DIR) `$(SDL_DIR)/sdl2-config --cflags` #`sdl2-config --cflags`
-LINKER_FLAGS =	`$(SDL_DIR)/sdl2-config --libs` #`sdl2-config --libs`
+D_OBJ=$(BUILD)/obj
+D_DEP=$(BUILD)/dep
+D_SUB=
+DIRS:=$(D_DEP) $(addprefix $(D_DEP)/, $(D_SUB))\
+	$(D_OBJ) $(addprefix $(D_OBJ)/, $(D_SUB))
 
-SRCS =		nmlx_init.c\
-			nmlx_loop.c\
-			nmlx_new_win.c\
-			nmlx_put_image_to_window.c\
-			nmlx_new_img.c\
-			nmlx_get_data_address.c\
-			nmlx_hook.c\
-			nmlx_quit.c\
-			nmlx_sdl_to_x.c\
-			nmlx_destroy_img.c\
-			nmlx_destroy_win.c\
-			nmlx_mouse.c\
-			nmlx_loop_hook.c\
-			nmlx_smart_hook.c\
-			nmlx_do_key_repeat.c\
-			nmlx_loop_stop.c\
-			nmlx_sdl_extension_stuff.c
+CC=gcc
+CFLAGS=-Wall -Wextra -Ofast -Werror
+DFLAGS=-MP -MMD -MF $(D_DEP)/$*.d -MT $@
+IFLAGS=-I$(D_INC) `sdl2-config --cflags`
+CPPFLAGS=$(CFLAGS) $(IFLAGS) $(DFLAGS)
+LDFLAGS= `sdl2-config --libs` $(NAME)
 
-OBJS =		$(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
+C_RED=\033[31m
+C_GREEN=\033[32m
+C_CYAN=\033[36m
+C_NONE=\033[0m
+BUILD_MSG=$(C_GREEN)✔$(C_NONE)
+REMOVE_MSG=$(C_RED)𐄂$(C_NONE)
 
-C_RED = \033[31m
-C_GREEN = \033[32m
-C_CYAN = \033[36m
-C_NONE = \033[0m
+INC=$(D_INC)/minishell.h
 
-all : $(NAME)
+SRC=nmlx_destroy_img.c\
+	nmlx_destroy_win.c\
+	nmlx_do_key_repeat.c\
+	nmlx_get_data_address.c\
+	nmlx_hook.c\
+	nmlx_init.c\
+	nmlx_loop.c\
+	nmlx_loop_hook.c\
+	nmlx_loop_stop.c\
+	nmlx_mouse.c\
+	nmlx_new_img.c\
+	nmlx_new_win.c\
+	nmlx_put_image_to_window.c\
+	nmlx_quit.c\
+	nmlx_sdl_extension_stuff.c\
+	nmlx_sdl_to_x.c\
+	nmlx_smart_hook.c
 
-$(NAME): $(SDL_DIR) $(DIR_LIB_SDL) $(OBJS)
-	-@ar rc $(NAME) $(LIB_SDL) $(LIB_SDL_IMG) $(OBJS)
-	@ranlib $@
-	@printf "\n$(C_GREEN)[%s]$(C_NONE)\n" $@
+OBJ:=$(patsubst %.c, $(D_OBJ)/%.o, $(SRC))
+DEP:=$(patsubst %.c, $(D_DEP)/%.d, $(SRC))
 
-$(OBJS_DIR)/%.o : $(SRCS_DIR)/%.c $(INCS_DIR)/* Makefile
-	@mkdir -p $(OBJS_DIR)/
-	-@$(CC) $(CFLAGS) -c $< -o $@
-	@printf "\n$(C_GREEN)[%s]$(C_NONE)\n" $@
+all :
+	@$(MAKE) -s $(NAME)
 
-$(SDL_DIR) :
-	@tar -xf $(SDL_TAR)
-	mv $(SDL_UNTAR) $(SDL_DIR)
-	@printf "$(C_CYAN)starting SDL set up...]$(C_NONE)\n" $@
-
-$(DIR_LIB_SDL):
-	@mkdir $(DIR_LIB_SDL)
-	@printf "\n$(C_CYAN)[configuring SDL...]$(C_NONE)\n"
-	@cd $(SDL_DIR); ./configure --prefix=`pwd`/lib
-	@printf "$(C_CYAN)[compiling SDL...]$(C_NONE)\n"
-	@make -C $(SDL_DIR)
-	@make -C $(SDL_DIR) install >/dev/null
-	@printf "\n$(C_GREEN)[SDL2]$(C_NONE)\n"
-
-EXEC = tester
-S = test_srcs/main.c
-
-test: $(NAME)
-	$(CC) $(CFLAGS) $(S) $(NAME) $(LINKER_FLAGS) -o $(EXEC) && ./$(EXEC)
+$(NAME) : $(SDL2) $(OBJ)
+	@ar rc $(NAME) $(OBJ)
+	@printf "$(BUILD_MSG) %s\n" $@
 
 clean :
-	@rm -rf $(OBJS)
+	@rm -rf $(BUILD)
+	@printf "$(REMOVE_MSG) rm %s\n" $(BUILD)
 
 fclean : clean
-	@rm -rf $(NAME) $(EXEC) $(MLX)
+	@rm -rf $(NAME) test
+	@printf "$(REMOVE_MSG) rm %s\n" $(NAME) test
 
-fullfclean : fclean
-	@rm -rf $(SDL_DIR) $(SDL_IMG_DIR)
+re : fclean all test
 
-re : fclean all
+$(SDL2) :
+	$(INSTALL_SDL2)
 
-re_full : fullfclean all
+test : all
+	$(CC) $(CPPFLAGS) test.c $(LDFLAGS) -o test
 
-.PHONY = clean fclean fullfclean re re_full all
+$(BUILD) :
+	@mkdir -p $@ $(DIRS)
+	@printf "$(BUILD_MSG) %s\n" $@
+
+-include $(DEP)
+
+$(D_OBJ)/%.o : $(D_SRC)/%.c  $(GIT) Makefile | $(BUILD)
+	@$(CC) $(CPPFLAGS) -c $< -o $@
+	@printf "$(BUILD_MSG) %s\n" $<
+
+.PHONY: all clean fclean re test
