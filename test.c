@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 07:28:46 by mbrunel           #+#    #+#             */
-/*   Updated: 2020/10/15 19:49:37 by mbrunel          ###   ########.fr       */
+/*   Updated: 2020/10/16 01:14:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "not_mlx.h"
+#include "nmlx.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 #define HEIGHT 600
 #define WIDTH 600
@@ -34,7 +36,7 @@ typedef struct	s_info
 int	fail(int code)
 {
 	printf("fail number %d\n", code);
-	return (EXIT_FAILURE);
+	return (-1);
 }
 
 int pressmouse(int i, int x, int y, void *data)
@@ -106,5 +108,5 @@ int main(void)
 	mlx_hook(data.mlx_win, 5, (1L<<3), &releasemouse, (void*)&data);
 	mlx_loop_hook(data.mlx_ptr, &frame_renderer, &data);
     mlx_loop(data.mlx_ptr);
-    return (EXIT_SUCCESS);
+    return (0);
 }
