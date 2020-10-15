@@ -53,4 +53,5 @@ Mkfile.old
 dkms.conf
 
 # garbage
-miniRTA2
+test
+libnmlx.a
