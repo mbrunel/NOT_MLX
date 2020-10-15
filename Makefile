@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/15 01:02:41 by mbrunel           #+#    #+#              #
-#    Updated: 2020/10/16 00:06:13 by user42           ###   ########.fr        #
+#    Updated: 2020/10/16 00:58:17 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,6 @@ C_CYAN=\033[36m
 C_NONE=\033[0m
 BUILD_MSG=$(C_GREEN)✔$(C_NONE)
 REMOVE_MSG=$(C_RED)𐄂$(C_NONE)
-
-INC=$(D_INC)/minishell.h
 
 SRC=nmlx_destroy_img.c\
 	nmlx_destroy_win.c\
