@@ -6,7 +6,7 @@
 #    By: mbrunel <mbrunel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/15 01:02:41 by mbrunel           #+#    #+#              #
-#    Updated: 2020/10/15 20:24:11 by mbrunel          ###   ########.fr        #
+#    Updated: 2020/10/15 20:29:51 by mbrunel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,8 @@ D_SUB=
 DIRS:=$(D_DEP) $(addprefix $(D_DEP)/, $(D_SUB))\
 	$(D_OBJ) $(addprefix $(D_OBJ)/, $(D_SUB))
 
-CC=gcc
-CFLAGS=-Wall -Wextra -Ofast -Werror
+CC=clang
+CFLAGS=-Wall -Wextra -Ofast #-Werror
 DFLAGS=-MP -MMD -MF $(D_DEP)/$*.d -MT $@
 IFLAGS=-I$(D_INC) `sdl2-config --cflags`
 CPPFLAGS=$(CFLAGS) $(IFLAGS) $(DFLAGS)
