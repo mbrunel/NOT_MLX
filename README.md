@@ -1,6 +1,8 @@
 # NOT_MLX
 
-Parce qu'mlx aime les leaks (et n'est pas portable btw)
+This library was created because 42's mlx isn't completely portable.
+I mean : if your keycodes work on linux they won't work on macos and vis versa
+NOT_MLX allow you to use mac os keycodes on linux as well while only changing your project's Makefile
 
 ### WARNINGS
 ```
@@ -10,70 +12,23 @@ I don't exactly know how the copyright stuff should be handled   \__(*_*)__/
 All the functions of the current mlx are implemented;
 however the following functions do nothing and return 0 or NULL :
 ```
-mlx_pixel_put(); (useless trash)
-mlx_get_color_value(); (didn't really understand what it does)
-mlx_expose_hook (); (same here)
-
-mlx_string_put();           |                SORRY
-mlx_xpm_to_image();         |       I didn't manage to compile
-mlx_xpm_file_to_image();    |         SDL-image and SDL-ttf
-mlx_png_file_to_image();    |       for cross-platform goals
-
-mlx_do_sync(void *mlx_ptr); (maybe usefull for libX but it seems useless anyway)
+mlx_pixel_put(); (useless anyway)
+mlx_get_color_value();
+mlx_expose_hook ();
+mlx_string_put();
+mlx_xpm_to_image();
+mlx_xpm_file_to_image();
+mlx_png_file_to_image();
+mlx_do_sync(void *mlx_ptr);
 ```
-If you really need some of these of these functions don't hesitate to fork it (:
 
-### Prerequisites
+## NOT_MLX guide
 
-None : just take your validated (or not) project and follow the guideline below to make it compile easily on any platform.
-The keycodes which are used to deal with key events will be the MAC OS ones as it is already the case when you use the mlx at 42.
-With this implementation you should be able to make a multi-platform graphical project.
+if you want to use some minor extra features include unofficial.h
+else you can let the original mlx.h file as it is since this is a miror
+for the link part follow the test rule in this project [Makefile]
 
-## Installing
-
-* first you have to put this repo in the root of your project;
-* then you have to do the following adjustments in your makefile :
-
-put before the link commande line
-```
-$(MAKE) -C NOT_MLX
-```
-then replace your previous link line which should be something like one of these :
-```
-gcc *.o libmlx.dylib -o miniRT  ||  gcc *.o mlx/libmlx.a -o miniRT || gcc *.o -lmlx -o miniRT
-```
-by :
-```
-gcc *.o NOT_MLX/libnmlx.a `NOT_MLX/libs/SDL2-2.0.10/sdl2-config --cflags --libs` -o miniRT
-```
-You can keep the same includes and the same source code
-or add unnoficial.h if you want to add the extra features.
-
-If you don't success :
-* Try to delete all your -Werror flags because linux's gcc has the habit to add some random warnings
-* Don't forget that linux's gcc want you to add the used library explicetly during the link
-
-So if you use the libmath for example :
-```
-gcc *.o -lm
-```
-same for pthread etc...
-
-If you still have problems :
-
-* You can see the Makefile's rule [test](Makefile) for a basic idea of what it should look like.
-* You can also try to see the Makefile of my [miniRT](https://github.com/42A2/miniRTA2).
-* Finally you can contact me on Slack (login : mbrunel, 42 Paris) or open a new issue
-
-If you want to use this multiple times I recomand you to :
-
-* Install the library with your package manager and then
-* Replace "SDL2.h" by <SDL2/SDL2.h> in not_mlx.h
-* In the Makefile delete all the mentions of SDL2 and uncomments the sdl2-config flags
-
-It should spare you the compilation time of the sdl
-
-## MLX tutorial
+## MLX guide
 
 Since nmlx do approximatively the same things than the mlx here's a tuto for beginners :
 
