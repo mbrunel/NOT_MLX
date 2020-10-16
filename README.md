@@ -26,9 +26,11 @@ mlx_do_sync(void *mlx_ptr);
 
 ## NOT_MLX guide
 
-if you want to use some minor extra features include unofficial.h
-else you can let the original mlx.h file as it is since this is a miror
-for the link part follow the test rule in this project [Makefile](Makefile)
+if you want to use some minor extra features add
+`#include "unofficial.h"` into mlx.h
+
+for the link part :
+* you should have something like : gcc *.o \`sdl2-config --libs\` libnmlx.a
 
 ## MLX guide
 
