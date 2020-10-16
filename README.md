@@ -1,8 +1,10 @@
 # NOT_MLX
 
 This library was created because 42's mlx isn't completely portable.
-I mean : if your keycodes work on linux they won't work on macos and vis versa
-NOT_MLX allow you to use mac os keycodes on linux as well while only changing your project's Makefile
+
+I mean : if your keycodes work on linux they won't work on macos and vis versa.
+
+NOT_MLX allows you to use mac os keycodes on linux as well while only changing your project's Makefile
 
 ### WARNINGS
 ```
