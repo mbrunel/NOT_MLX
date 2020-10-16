@@ -28,7 +28,7 @@ mlx_do_sync(void *mlx_ptr);
 
 if you want to use some minor extra features include unofficial.h
 else you can let the original mlx.h file as it is since this is a miror
-for the link part follow the test rule in this project [Makefile]
+for the link part follow the test rule in this project [Makefile](Makefile)
 
 ## MLX guide
 
