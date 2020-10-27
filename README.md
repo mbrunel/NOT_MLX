@@ -2,9 +2,8 @@
 
 This library was created because 42's mlx isn't completely portable.
 
-I mean : if your keycodes work on linux they won't work on macos and vis versa.
-
-NOT_MLX allows you to use mac os keycodes on linux as well while only changing your project's Makefile
+The functions are implemented with the SDL2 library which means that your project will work everywhere (even windows)
+with the same keycodes.
 
 ### WARNINGS
 ```
@@ -24,15 +23,22 @@ mlx_png_file_to_image();
 mlx_do_sync(void *mlx_ptr);
 ```
 
-## NOT_MLX guide
+## NOT_MLX usage
 
-if you want to use some minor extra features add
-`#include "unofficial.h"` into mlx.h
+include:
+* mlx.h is the official of the minilibx library
+* unofficial.h is declaring some extra functions that you can use
+* nmlx.h is including both
 
-for the link part :
-* you should have something like : gcc *.o \`sdl2-config --libs\` libnmlx.a
+linux and macos:
+* make this repository to build libnmlx.a
+* then link with : gcc *.o \`sdl2-config --libs\` libnmlx.a
 
-## MLX guide
+windows:
+* the most simple solution is to just add the src repository into your visual studio project or whatever
+as if they were part of your project
+
+## MLX tutorial
 
 Since nmlx do approximatively the same things than the mlx here's a tuto for beginners :
 
